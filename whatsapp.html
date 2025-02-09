@@ -1,0 +1,132 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="whatsapp.css">
+</head>
+<body>
+    <div class="whatsapp-screen">
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="contact-name">John Doe</div>
+            <div class="contact-status">Active now</div>
+          </div>
+          <div class="chat-messages">
+            <div class="message sent">Hello, how are you?</div>
+            <div class="message received">I'm doing well, thank you!</div>
+            <div class="message sent">That's great to hear!</div>
+          </div>
+          <div class="chat-input-container">
+            <input type="text" class="chat-input" placeholder="Type a message...">
+            <button class="chat-send-button">Send</button>
+          </div>
+        </div>
+      </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="whatsapp.css">
+    <style>
+        .chat-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .sent {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+        .received {
+            background-color: #ffffff;
+            align-self: flex-start;
+        }
+        .chat-input-container {
+            display: flex;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chat-send-button {
+            padding: 10px;
+            margin-left: 5px;
+            border: none;
+            background-color: #25D366;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="whatsapp-screen">
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="contact-name">John Doe</div>
+            <div class="contact-status">Active now</div>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="message sent">Hello, how are you?</div>
+            <div class="message received">I'm doing well, thank you!</div>
+            <div class="message sent">That's great to hear!</div>
+          </div>
+          <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
+            <button class="chat-send-button" id="send-button">Send</button>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById('send-button');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        function sendMessage() {
+            const messageText = chatInput.value.trim();
+            if (messageText) {
+                // Create a new message div
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'sent');
+                messageDiv.textContent = messageText;
+
+                // Append the new message to the chat messages
+                chatMessages.appendChild(messageDiv);
+
+                // Clear the input field
+                chatInput.value = '';
+
+                // Scroll to the bottom of the chat
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Event listener for the send button
+        sendButton.addEventListener('click', sendMessage);
+
+        // Event listener for the Enter key
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
